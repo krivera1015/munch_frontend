@@ -1,9 +1,9 @@
 import React from 'react'
 
-const LocationForm = () => {
+const LocationForm = (props) => {
     return (
-        <form>
-            <input name="location" onChange="null" type="text" placeholder="where are you?"></input>
+        <form onSubmit={props.onSubmit}>
+            <input value={props.text} name="location" onChange={props.onChange} type="text" placeholder="where are you?"></input>
         </form>
     )
 }
