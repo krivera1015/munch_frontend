@@ -3,7 +3,7 @@
 //instead of returning default state
 //which can have you looking for a bug forever
 export const SET_RESTAURANTS = "SET_RESTAURANTS"
-
+export const NEXT_RESTAURANT = "NEXT_RESTAURANT"
 
 //fetching from my backend by using thunk to use 
 //dispatch function on my setRestaurants action
@@ -32,9 +32,11 @@ const setRestaurants = data => {
     }
 }
 
+//we are getting the current restaurant so we
+//can go to the next, this code is in my reducer
 export const nextRestaurant = displayedRestaurant => {
     return{
-        type: "INCREMENT_UP",
+        type: NEXT_RESTAURANT,
         payload: displayedRestaurant
     }
 }
