@@ -8,12 +8,16 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux'
 
 //import redux stroe
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+
+//using thunk
+import thunk from 'redux-thunk'
 
 //import reducer which will communciate with store
 import reducer from './redux/reducer.js'
 
-const store = createStore(reducer) 
+//here I am passing another argument that will take in thunk
+const store = createStore(reducer, applyMiddleware(thunk)) 
 //wrapping my whole App container in Provider
 ReactDOM.render(<Provider store={store} ><App/></Provider>, document.getElementById('root'));
 

@@ -1,53 +1,47 @@
 import React, { Component } from 'react';
 import LocationForm from '../components/LocationForm';
 import { connect } from 'react-redux';
-import {newLocation} from '../redux/actionCreator'
+import { fetchRestaurants } from '../redux/actionCreator'
 
 class LocationContainer extends Component {
     
     //setting location state locally
     state = {
-        text: ""
+        location: ""
     }
 
     handleOnChange = (e) => {
-        this.setState({text: e.target.value})
+        this.setState({location: e.target.value})
     }
 
     handleOnSubmit = (e) => {
         e.preventDefault()
         //using redux to get newLocation through dispatch
-        //this.props.newLocation(this.state.text)
+    
         
         //fetching from my local server to get my restaurants
-        fetch('http://localhost:3000/api/v1/find_restaurants', {
-            method: "POST",
-            headers:{
-                'Content-Type': 'application/json'
-              },
-              //setting backend locations params to local state
-            body: JSON.stringify({location: this.state.text})
-        })
-        .then(resp => resp.json())
-        .then(console.log)
+        console.log('submitting...')
+        //passing in my local state location to fetch in my action
+        this.props.fetchRestaurants(this.state.location)
+
     }
 
     render(){
-        console.log(this.state.text)
+        console.log("hello", this.props)
         return (
             <div>
-                <LocationForm onChange={this.handleOnChange} onSubmit={this.handleOnSubmit} text={this.state.text}/>
+                <LocationForm onChange={this.handleOnChange} onSubmit={this.handleOnSubmit} location={this.state.location}/>
             </div>
         )
     }
 
 }
 
-//using redux to set state through dispatch action
-const mapDispatchToProps = dispatch => {
-    return {
-        newLocation: (location) => dispatch(newLocation(location))
-    }
+//allows me to see my props/state in console.log
+const mapStateToProps = state => {
+    return state
 }
 
-export default connect(null, mapDispatchToProps)(LocationContainer)
+//allows me to use my fetchRestaurant function as props to pass in my 
+//local state location
+export default connect(mapStateToProps, { fetchRestaurants })(LocationContainer)
