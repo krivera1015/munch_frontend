@@ -1,3 +1,7 @@
+//exporting my type as a variable so that 
+//it can error out if there was a mistake
+//instead of returning default state
+//which can have you looking for a bug forever
 export const SET_RESTAURANTS = "SET_RESTAURANTS"
 
 
@@ -21,10 +25,17 @@ export const fetchRestaurants = location => {
 
 //getting my data object of restaurants 
 //to speak to reducer
-export const setRestaurants = data => {
+const setRestaurants = data => {
     return {
         type: SET_RESTAURANTS,
         payload: data
+    }
+}
+
+export const nextRestaurant = displayedRestaurant => {
+    return{
+        type: "INCREMENT_UP",
+        payload: displayedRestaurant
     }
 }
 

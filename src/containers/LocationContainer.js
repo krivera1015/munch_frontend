@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LocationForm from '../components/LocationForm';
 import { connect } from 'react-redux';
+//bringing in the function fetchRestaurants
 import { fetchRestaurants } from '../redux/actionCreator'
 
 class LocationContainer extends Component {
@@ -29,7 +30,7 @@ class LocationContainer extends Component {
     render(){
         console.log("hello", this.props)
         return (
-            <div>
+            <div className="App">
                 <LocationForm onChange={this.handleOnChange} onSubmit={this.handleOnSubmit} location={this.state.location}/>
             </div>
         )
