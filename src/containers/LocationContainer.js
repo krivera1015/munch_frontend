@@ -3,12 +3,14 @@ import LocationForm from '../components/LocationForm';
 import { connect } from 'react-redux';
 //bringing in the function fetchRestaurants
 import { fetchRestaurants } from '../redux/actionCreator'
+import { Redirect } from 'react-router-dom'
 
 class LocationContainer extends Component {
     
     //setting location state locally
     state = {
-        location: ""
+        location: "",
+        submit: false
     }
 
     handleOnChange = (e) => {
@@ -24,16 +26,15 @@ class LocationContainer extends Component {
         console.log('submitting...')
         //passing in my local state location to fetch in my action
         this.props.fetchRestaurants(this.state.location)
-
+        this.setState({submit: true})
     }
 
     render(){
         console.log("hello", this.props)
-        return (
-            <div className="App">
-                <LocationForm onChange={this.handleOnChange} onSubmit={this.handleOnSubmit} location={this.state.location}/>
-            </div>
-        )
+        let submitted = this.state.submit ? (<Redirect to='/restaurant'/>) : (<div>
+            <LocationForm onChange={this.handleOnChange} onSubmit={this.handleOnSubmit} location={this.state.location}/>
+        </div>)
+        return submitted
     }
 
 }

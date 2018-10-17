@@ -20,7 +20,7 @@ const renderSavedRestaurantCards = (restaurants) => {
             Approve
           </Button> */}
           <Button basic color='red'>
-            Decline
+            Remove
           </Button>
         </div>
       </Card.Content>

@@ -22,9 +22,7 @@ const RestaurantCard = ({restaurants, displayedRestaurant, saveRestaurant, decli
                     {/* <Card.Description>Matthew is a musician living in Nashville.</Card.Description> */}
                     </Card.Content>
                     <Card.Content extra>
-                        <a>
                             rating: {displayedRestaurant.rating}
-                        </a>
                 </Card.Content> 
                 </Card>
                 </div>
