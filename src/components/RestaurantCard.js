@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import {saveRestaurant, declineRestaurant} from '../redux/actionCreator'
 import { Container, Card, Image, Icon } from 'semantic-ui-react'
-import SwipeableViews from 'react-swipeable-views';
+//import SwipeableViews from 'react-swipeable-views';
 
 const RestaurantCard = ({restaurants, displayedRestaurant, saveRestaurant, declineRestaurant}) => {
     //it will check if the restaurants we have is greater than 0

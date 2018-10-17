@@ -1,6 +1,8 @@
 .App {
-  margin: 0% 5% 0% 5%;
-  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .App-logo {

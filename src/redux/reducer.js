@@ -12,7 +12,7 @@ const initState = {
 
 //setting my current state in store
 const reducer = (state = initState, action) => {
-    console.log(action.type)
+    //console.log(action.type)
     const index = state.restaurants.indexOf(action.payload)
     switch (action.type) {
         case SET_RESTAURANTS:
@@ -41,7 +41,6 @@ const reducer = (state = initState, action) => {
         
         //will just go to the next while keeping state in tack
         case DECLINE_RESTAURANT:
-            //const index = state.restaurants.indexOf(action.payload)
             return {
                 ...state,
                 displayedRestaurant: state.restaurants[index + 1]
