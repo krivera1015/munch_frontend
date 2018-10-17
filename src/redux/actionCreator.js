@@ -1,9 +1,14 @@
+//an action is a function that returns an object with type (SHOULD MATCH REDUCER TYPE)/payload(RELEVANT DATA)
+// actions defined here can be called in other components with mapDispatchToProps
+
 //exporting my type as a variable so that 
 //it can error out if there was a mistake
 //instead of returning default state
 //which can have you looking for a bug forever
 export const SET_RESTAURANTS = "SET_RESTAURANTS"
-export const NEXT_RESTAURANT = "NEXT_RESTAURANT"
+//export const NEXT_RESTAURANT = "NEXT_RESTAURANT"
+export const SAVE_RESTAURANT = "SAVE_RESTAURANT"
+export const DECLINE_RESTAURANT = "DECLINE_RESTAURANT"
 
 //fetching from my backend by using thunk to use 
 //dispatch function on my setRestaurants action
@@ -34,12 +39,27 @@ const setRestaurants = data => {
 
 //we are getting the current restaurant so we
 //can go to the next, this code is in my reducer
-export const nextRestaurant = displayedRestaurant => {
-    return{
-        type: NEXT_RESTAURANT,
-        payload: displayedRestaurant
+// export const nextRestaurant = restaurant => {
+//     return {
+//         type: NEXT_RESTAURANT,
+//         payload: restaurant
+//     }
+// }
+
+//compared to above code this will do the same
+//but will save the object into my component while going to next restaurant in my reducer
+export const saveRestaurant = restaurant => {
+    return {
+        type: SAVE_RESTAURANT,
+        payload: restaurant
     }
 }
 
-//an action is a function that returns an object with type (SHOULD MATCH REDUCER TYPE)/payload(RELEVANT DATA)
-// actions defined here can be called in other components with mapDispatchToProps
+//this will not save and just go to next restaurant in my reducer
+export const declineRestaurant = restaurant => {
+    return {
+        type: DECLINE_RESTAURANT,
+        payload: restaurant
+    }
+}
+
