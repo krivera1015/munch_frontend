@@ -1,7 +1,7 @@
 import {SET_RESTAURANTS} from './actionCreator'
-//import {NEXT_RESTAURANT} from './actionCreator'
 import {SAVE_RESTAURANT} from './actionCreator'
 import {DECLINE_RESTAURANT} from './actionCreator'
+import {REMOVE_RESTAURANT} from './actionCreator'
 
 //initializing our state in store
 const initState = {
@@ -13,7 +13,8 @@ const initState = {
 //setting my current state in store
 const reducer = (state = initState, action) => {
     //console.log(action.type)
-    const index = state.restaurants.indexOf(action.payload)
+    const restaurantIndex = state.restaurants.indexOf(action.payload)
+    const saveRestIndex = state.savedRestaurants.indexOf(action.payload)
     switch (action.type) {
         case SET_RESTAURANTS:
             return {
@@ -32,10 +33,10 @@ const reducer = (state = initState, action) => {
 
         //this will do the same as above but also save into my component
         case SAVE_RESTAURANT:
-            console.log("in saveRestaurant")
+            //console.log("in saveRestaurant")
             return {
                 ...state,
-                displayedRestaurant: state.restaurants[index + 1],
+                displayedRestaurant: state.restaurants[restaurantIndex + 1],
                 savedRestaurants: [...state.savedRestaurants, action.payload]
             }
         
@@ -43,7 +44,14 @@ const reducer = (state = initState, action) => {
         case DECLINE_RESTAURANT:
             return {
                 ...state,
-                displayedRestaurant: state.restaurants[index + 1]
+                displayedRestaurant: state.restaurants[restaurantIndex + 1]
+            }
+        case REMOVE_RESTAURANT:
+            let chosenRestaurants = [...state.savedRestaurants]
+            chosenRestaurants.splice(saveRestIndex, 1)
+            return {
+                ...state,
+                savedRestaurants: chosenRestaurants
             }
         default:
             return state

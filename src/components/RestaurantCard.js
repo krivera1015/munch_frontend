@@ -10,7 +10,7 @@ const RestaurantCard = ({restaurants, displayedRestaurant, saveRestaurant, decli
     if(restaurants.length > 0){
         return(
             
-            <Container class="ui centered card">
+            <Container className="ui centered card">
                 <div>
                 <Card>
                     <Image src={displayedRestaurant.image_url} alt={displayedRestaurant.name}/>

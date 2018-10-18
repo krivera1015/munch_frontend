@@ -16,7 +16,7 @@ class RestaurantContainer extends Component {
 
     render () {
         const { activeItem } = this.state
-        console.log('whats up', this.props.restaurants)
+        console.log('whats up', this.props)
         return (
             <Container>
                 <Menu tabular>

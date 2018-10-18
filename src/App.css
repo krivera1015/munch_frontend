@@ -3,6 +3,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  min-height: 300px;
 }
 
 .App-logo {
@@ -25,6 +26,23 @@
   color: #61dafb;
 }
 
+
+.ui.tabular.menu a:first-child {
+  margin-left: auto;
+}
+
+.ui.tabular.menu a:last-child {
+  margin-right: auto;
+}
+
+.ui.container {
+  min-width: 320px;
+}
+
+.search-bar {
+  min-width: 300px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -33,3 +51,10 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* @media (max-width: 600px) {
+  a {
+    color: red !important;
+  }
+} */

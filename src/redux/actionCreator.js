@@ -6,10 +6,9 @@
 //instead of returning default state
 //which can have you looking for a bug forever
 export const SET_RESTAURANTS = "SET_RESTAURANTS"
-//export const NEXT_RESTAURANT = "NEXT_RESTAURANT"
 export const SAVE_RESTAURANT = "SAVE_RESTAURANT"
 export const DECLINE_RESTAURANT = "DECLINE_RESTAURANT"
-
+export const REMOVE_RESTAURANT = "REMOVE_RESTAURANT"
 //fetching from my backend by using thunk to use 
 //dispatch function on my setRestaurants action
 //passing in my fetched data
@@ -24,9 +23,14 @@ export const fetchRestaurants = location => {
             body: JSON.stringify({ location })
         })
         .then(resp => resp.json())
-        .then(data => dispatch(setRestaurants(data)))
+        .then(data => {
+            if(!data.error){
+                dispatch(setRestaurants(data))
+            }
+        })
     }
 }
+//data => dispatch(setRestaurants(data))
 
 //getting my data object of restaurants 
 //to speak to reducer
@@ -63,3 +67,9 @@ export const declineRestaurant = restaurant => {
     }
 }
 
+export const removeRestaurant = restaurant => {
+    return {
+        type: REMOVE_RESTAURANT,
+        payload: restaurant
+    }
+}

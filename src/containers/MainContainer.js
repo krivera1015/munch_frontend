@@ -8,7 +8,7 @@ class MainContainer extends Component {
 
     render () {
         return (
-            <div class='App'>
+            <div className='App'>
                 <Switch>
                     <Route path='/homepage'><HomePage/></Route>
                     <Route path='/location'><LocationContainer/></Route>

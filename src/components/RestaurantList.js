@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Button, Card, Image } from 'semantic-ui-react'
+import {removeRestaurant} from '../redux/actionCreator'
 
-const renderSavedRestaurantCards = (restaurants) => {
+const renderSavedRestaurantCards = (restaurants, removeRestaurant) => {
   return restaurants.map( restaurant => {
     return (
       <Card>
@@ -16,10 +17,10 @@ const renderSavedRestaurantCards = (restaurants) => {
       </Card.Content>
       <Card.Content extra>
         <div className='ui two buttons'>
-          {/* <Button basic color='green'>
-            Approve
-          </Button> */}
-          <Button basic color='red'>
+          <Button basic color='blue'>
+            Navigate
+          </Button>
+          <Button onClick={() => removeRestaurant(restaurant) } basic color='red'>
             Remove
           </Button>
         </div>
@@ -28,10 +29,10 @@ const renderSavedRestaurantCards = (restaurants) => {
     )
   })
 }
-const RestaurantList = ({savedRestaurants}) => {
+const RestaurantList = ({savedRestaurants, removeRestaurant}) => {
   return(
   <Card.Group>
-    {renderSavedRestaurantCards(savedRestaurants)}
+    {renderSavedRestaurantCards(savedRestaurants, removeRestaurant)}
   </Card.Group>
   )
 }
@@ -40,4 +41,4 @@ const mapStateToProps = state => {
   return state
 }
 
-export default connect(mapStateToProps)(RestaurantList)
+export default connect(mapStateToProps, {removeRestaurant})(RestaurantList)

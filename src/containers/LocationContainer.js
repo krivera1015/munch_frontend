@@ -10,7 +10,6 @@ class LocationContainer extends Component {
     //setting location state locally
     state = {
         location: "",
-        submit: false
     }
 
     handleOnChange = (e) => {
@@ -20,18 +19,14 @@ class LocationContainer extends Component {
     handleOnSubmit = (e) => {
         e.preventDefault()
         //using redux to get newLocation through dispatch
-    
-        
         //fetching from my local server to get my restaurants
-        console.log('submitting...')
         //passing in my local state location to fetch in my action
         this.props.fetchRestaurants(this.state.location)
-        this.setState({submit: true})
     }
 
     render(){
-        console.log("hello", this.props)
-        let submitted = this.state.submit ? (<Redirect to='/restaurant'/>) : (<div>
+        //console.log("hello", this.props, this.state)
+        let submitted = this.props.restaurants.length > 0 ? (<Redirect to='/restaurant'/>) : (<div>
             <LocationForm onChange={this.handleOnChange} onSubmit={this.handleOnSubmit} location={this.state.location}/>
         </div>)
         return submitted

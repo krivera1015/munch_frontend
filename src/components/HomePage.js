@@ -6,14 +6,14 @@ const HomePage = () => (
     <Link to='/location'>
     <div>
         <Reveal animated='small fade'>
-            <Reveal.Content visible>
-                <Image centered size="small" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhqvo8sceTqPRKBciFaibhsdcZH-46unwOvMsd8GjIgxPKo9-z' />
+            <Reveal.Content visible >
+                <Image src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhqvo8sceTqPRKBciFaibhsdcZH-46unwOvMsd8GjIgxPKo9-z' />
         <Header as='h2' icon textAlign='center'>
         <Header.Content>Munch</Header.Content>
         </Header>
             </Reveal.Content>
             <Reveal.Content hidden>
-                <Button onClick={() => console.log('hellooooooooo')} basic color='yellow'>Whats to Eat?</Button>
+                <Button basic color='yellow'>Whats to Eat?</Button>
             </Reveal.Content>
         </Reveal>
     </div>
