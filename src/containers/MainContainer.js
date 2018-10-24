@@ -10,11 +10,12 @@ class MainContainer extends Component {
     render () {
         return (
             <div className='App'>
-                <RouletteWheel/>
                 <Switch>
+                    <Route exact path='/' component={HomePage}/>
                     <Route path='/homepage'><HomePage/></Route>
                     <Route path='/location'><LocationContainer/></Route>
                     <Route path='/restaurant'><RestaurantContainer/></Route>
+                    <Route path='/rouletteWheel'><RouletteWheel/></Route>
                 </Switch>
             </div>
         )
