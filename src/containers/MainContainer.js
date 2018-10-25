@@ -4,6 +4,7 @@ import RestaurantContainer from './RestaurantContainer';
 import HomePage from '../components/HomePage'
 import { Route, Switch } from 'react-router-dom'
 import RouletteWheel from '../components/RouletteWheel';
+import Map from '../components/Map'
 
 class MainContainer extends Component {
 
@@ -16,6 +17,7 @@ class MainContainer extends Component {
                     <Route path='/location'><LocationContainer/></Route>
                     <Route path='/restaurant'><RestaurantContainer/></Route>
                     <Route path='/rouletteWheel'><RouletteWheel/></Route>
+                    <Route path='/map'><Map/></Route>
                 </Switch>
             </div>
         )

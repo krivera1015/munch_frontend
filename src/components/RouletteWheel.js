@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
-const options = ["Amirata", "Scar", "Gabe", "Kevin", "Tiga", "Eric", "Prince", "te","tde","tswe","twwe","twwe","twe","twwe"]
+import {connect} from 'react-redux'
+
+//const this.props.saveRestaurant = ["Amirata", "Scar", "Gabe", "Kevin", "Tiga", "Eric", "Prince", "te","tde","tswe","twwe","twwe","twe","twwe"]
 
 class RouletteWheel extends Component {
-
+    
     constructor(props) {
         super(props)
         
@@ -13,7 +15,7 @@ class RouletteWheel extends Component {
         this.state = {
             startAngle: 0,
             //creates each section of a circle depending on the length of array
-            arc: Math.PI / (options.length / 2),
+            arc: 0,
             //determines where to start by choosing random number between 10degrees and 20degrees
             spinAngleStart: 0,
             //the total time it will spin in seconds
@@ -22,6 +24,10 @@ class RouletteWheel extends Component {
             spinTimeOut: null,
             canvasContext: null
         }
+    }
+
+    restaurantNames = () => {
+        return this.props.savedRestaurants.map( restaurant => restaurant.name)
     }
     
     componentDidMount() {
@@ -32,7 +38,8 @@ class RouletteWheel extends Component {
         this.drawRouletteWheel(canvas)
         //this will set the state of my canvas so that my other functions can call canvas attriubutes and functions 
         this.setState({
-            canvasContext: canvas
+            canvasContext: canvas,
+            arc: Math.PI / (this.restaurantNames().length / 2)
         })
     }
 
@@ -45,7 +52,7 @@ class RouletteWheel extends Component {
             canvas.clearRect(0,0,500,500)
             canvas.lineWidth = 2
             
-            for(let i = 0; i < options.length; i++) {
+            for(let i = 0; i < this.restaurantNames().length; i++) {
                 canvas.strokeStyle = "black"
                 canvas.font = 'bold 20px Helvetica, Arial'
                 let angle = this.state.startAngle + i * this.state.arc
@@ -66,7 +73,7 @@ class RouletteWheel extends Component {
                 canvas.translate(250 + Math.cos(angle + this.state.arc / 2) * textRadius, 
                                 250 + Math.sin(angle + this.state.arc / 2) * textRadius)
                 canvas.rotate(angle + this.state.arc / 2 + Math.PI / 2)
-                var text = options[i]
+                var text = this.restaurantNames()[i]
                 canvas.fillText(text, -canvas.measureText(text).width / 2, 0)
                 canvas.restore() 
 
@@ -116,7 +123,7 @@ class RouletteWheel extends Component {
             let arcd = this.state.arc * 180 / Math.PI
             let index = Math.floor((360 - degrees % 360) / arcd)
             this.state.canvasContext.save()
-            let text = options[index]
+            let text = this.restaurantNames()[index]
             this.state.canvasContext.fillText(text, 250 - this.state.canvasContext.measureText(text).width / 2, 250 + 10)
             this.state.canvasContext.restore()
             console.log("canvas degrees", degrees, arcd, index)
@@ -145,4 +152,8 @@ class RouletteWheel extends Component {
     }
 }
 
-export default RouletteWheel
+const mapStateToProps = state => {
+    return state
+}
+
+export default connect(mapStateToProps)(RouletteWheel)

@@ -2,17 +2,19 @@ import {SET_RESTAURANTS} from './actionCreator'
 import {SAVE_RESTAURANT} from './actionCreator'
 import {DECLINE_RESTAURANT} from './actionCreator'
 import {REMOVE_RESTAURANT} from './actionCreator'
+import {GET_COORDINATES} from './actionCreator'
 
 //initializing our state in store
 const initState = {
     restaurants: [],
     displayedRestaurant: {},
-    savedRestaurants: [] 
+    savedRestaurants: [],
+    coordinates: {}
 }
 
 //setting my current state in store
 const reducer = (state = initState, action) => {
-    //console.log(action.type)
+    console.log(state)
     const restaurantIndex = state.restaurants.indexOf(action.payload)
     const saveRestIndex = state.savedRestaurants.indexOf(action.payload)
     switch (action.type) {
@@ -52,6 +54,11 @@ const reducer = (state = initState, action) => {
             return {
                 ...state,
                 savedRestaurants: chosenRestaurants
+            }
+        case GET_COORDINATES:
+            return {
+                ...state,
+                coordinates: action.payload
             }
         default:
             return state

@@ -9,6 +9,7 @@ export const SET_RESTAURANTS = "SET_RESTAURANTS"
 export const SAVE_RESTAURANT = "SAVE_RESTAURANT"
 export const DECLINE_RESTAURANT = "DECLINE_RESTAURANT"
 export const REMOVE_RESTAURANT = "REMOVE_RESTAURANT"
+export const GET_COORDINATES = "GET_COORDINATES"
 //fetching from my backend by using thunk to use 
 //dispatch function on my setRestaurants action
 //passing in my fetched data
@@ -71,5 +72,12 @@ export const removeRestaurant = restaurant => {
     return {
         type: REMOVE_RESTAURANT,
         payload: restaurant
+    }
+}
+
+export const getCoordinates = coordinates => {
+    return {
+        type: GET_COORDINATES,
+        payload: coordinates
     }
 }
