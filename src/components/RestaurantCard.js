@@ -6,7 +6,6 @@ import { Redirect } from 'react-router-dom'
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 import { Carousel } from 'react-responsive-carousel'
 import toWeekday from '../helpers/toWeekday'
-import Cards, { Card as CardSwiper } from 'react-swipe-card'
 
 class RestaurantCard extends Component {
     //it will check if the restaurants we have is greater than 0
@@ -50,12 +49,14 @@ class RestaurantCard extends Component {
         console.log("my attributes", this.state.attributes)
         const {restaurants, displayedRestaurant, saveRestaurant, declineRestaurant} = this.props
         const {open} = this.state
-
         if(restaurants.length <= 0){
             return <Redirect to='/location'/>
         }else{
             return(
-                
+                <div>
+                    <div className="plus">
+                        <Icon size="huge" onClick={()=>{saveRestaurant(displayedRestaurant)}} color='green' name='add'/>
+                    </div>
                 <Container className="ui centered card">
                     <div>
                         <Card>
@@ -88,9 +89,9 @@ class RestaurantCard extends Component {
                                             <br/>
                                             <p>{this.state.attributes.phone}</p>
                                             <br/>
-                                            <p>{this.state.attributes.hours[0].is_open_now ? "Open" : "Closed"} Now</p>
+                                            <p>{this.state.attributes.hours && this.state.attributes.hours[0].is_open_now ? "Open" : "Closed"} Now</p>
                                             <ul>
-                                                {this.state.attributes.hours[0].open.map(obj => {
+                                                {this.state.attributes.hours && this.state.attributes.hours[0].open.map(obj => {
                                                     return <li>{toWeekday(obj.day)}: {obj.start} - {obj.end}</li>
                                                 })}
                                             </ul>
@@ -126,14 +127,11 @@ class RestaurantCard extends Component {
                         </Card.Content> 
                         </Card>
                     </div>
-                    <div floated="left">
-                        <Icon onClick={()=>{saveRestaurant(displayedRestaurant)}} color='green' name='add'/>
-                    </div>
-                    <div floated="right">
-                        <Icon onClick={()=>{declineRestaurant(displayedRestaurant)}} color='red' name='minus'/>
-                    </div>
                 </Container>
-                
+                    <div className="minus">
+                        <Icon size="huge" onClick={()=>{declineRestaurant(displayedRestaurant)}} color='red' name='minus'/>
+                    </div>
+                </div>
             )
             }
     }

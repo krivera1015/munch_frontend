@@ -1,5 +1,5 @@
 .App {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -52,6 +52,23 @@
   }
 }
 
+.minus {
+  position: absolute;
+  right: 0px;
+  width: 300px;
+  padding: 10px;
+  top: 50%;
+  bottom: 50%;
+}
+
+.plus {
+  position: absolute;
+  left: 0px;
+  width: 300px;
+  padding: 10px;
+  top: 50%;
+  bottom: 50%;
+}
 
 /* @media (max-width: 600px) {
   a {

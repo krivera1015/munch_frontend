@@ -3,6 +3,7 @@ import {SAVE_RESTAURANT} from './actionCreator'
 import {DECLINE_RESTAURANT} from './actionCreator'
 import {REMOVE_RESTAURANT} from './actionCreator'
 import {GET_COORDINATES} from './actionCreator'
+import {CLEAR_RESTAURANTS} from './actionCreator'
 
 //initializing our state in store
 const initState = {
@@ -36,10 +37,23 @@ const reducer = (state = initState, action) => {
         //this will do the same as above but also save into my component
         case SAVE_RESTAURANT:
             //console.log("in saveRestaurant")
-            return {
-                ...state,
-                displayedRestaurant: state.restaurants[restaurantIndex + 1],
-                savedRestaurants: [...state.savedRestaurants, action.payload]
+            const currentRestaurant = action.payload
+            const finalRestaurant = state.restaurants[state.restaurants.length - 1]
+
+            console.log("last and current",currentRestaurant, finalRestaurant)
+            const allSavedRestaurants = [...state.savedRestaurants, action.payload]
+            const uniqueRestaurants = [...new Set(allSavedRestaurants)]
+            if (currentRestaurant !== finalRestaurant){
+                return {
+                    ...state,
+                    displayedRestaurant: state.restaurants[restaurantIndex + 1],
+                    savedRestaurants: uniqueRestaurants
+                }
+            }else{
+                return {
+                    ...state,
+                    savedRestaurants: uniqueRestaurants
+                }
             }
         
         //will just go to the next while keeping state in tack
@@ -60,6 +74,8 @@ const reducer = (state = initState, action) => {
                 ...state,
                 coordinates: action.payload
             }
+        case CLEAR_RESTAURANTS:
+            return initState
         default:
             return state
     }

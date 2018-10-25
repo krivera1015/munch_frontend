@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-//const this.props.saveRestaurant = ["Amirata", "Scar", "Gabe", "Kevin", "Tiga", "Eric", "Prince", "te","tde","tswe","twwe","twwe","twe","twwe"]
-
 class RouletteWheel extends Component {
     
     constructor(props) {
@@ -15,7 +13,7 @@ class RouletteWheel extends Component {
         this.state = {
             startAngle: 0,
             //creates each section of a circle depending on the length of array
-            arc: 0,
+            arc: Math.PI / (this.restaurantNames().length / 2),
             //determines where to start by choosing random number between 10degrees and 20degrees
             spinAngleStart: 0,
             //the total time it will spin in seconds
@@ -38,8 +36,7 @@ class RouletteWheel extends Component {
         this.drawRouletteWheel(canvas)
         //this will set the state of my canvas so that my other functions can call canvas attriubutes and functions 
         this.setState({
-            canvasContext: canvas,
-            arc: Math.PI / (this.restaurantNames().length / 2)
+            canvasContext: canvas
         })
     }
 

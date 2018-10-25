@@ -25,7 +25,7 @@ class LocationContainer extends Component {
     }
 
     render(){
-        //console.log("hello", this.props, this.state)
+        console.log("hello this is my restaurants", this.props)
         let submitted = this.props.restaurants.length > 0 ? (<Redirect to='/restaurant'/>) : (<div>
             <LocationForm onChange={this.handleOnChange} onSubmit={this.handleOnSubmit} location={this.state.location}/>
         </div>)

@@ -13,10 +13,9 @@ class MainContainer extends Component {
             <div className='App'>
                 <Switch>
                     <Route exact path='/' component={HomePage}/>
-                    <Route path='/homepage'><HomePage/></Route>
-                    <Route path='/location'><LocationContainer/></Route>
-                    <Route path='/restaurant'><RestaurantContainer/></Route>
-                    <Route path='/rouletteWheel'><RouletteWheel/></Route>
+                    <Route path='/location' component={LocationContainer}/>
+                    <Route path='/restaurant' component={RestaurantContainer}/>
+                    <Route path='/rouletteWheel' component={RouletteWheel}/>
                     <Route path='/map'><Map/></Route>
                 </Switch>
             </div>
