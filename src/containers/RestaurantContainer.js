@@ -21,7 +21,7 @@ class RestaurantContainer extends Component {
             return <RestaurantList/>
         } else if (this.state.activeItem === 'Nearby Restaurants') {
             return <RestaurantCard/>
-        } else if (this.state.activeItem === 'C') {
+        } else if (this.state.activeItem === 'Different Location') {
             this.props.clearRestaurants()
             // return <NavLink to='/location'></NavLink>
         }
@@ -36,7 +36,7 @@ class RestaurantContainer extends Component {
                     <Menu.Item name="Nearby Restaurants" active={activeItem === "Nearby Restaurants"} onClick={this.handleItemClick}/>
                     <Menu.Item name="My Restaurants" active={activeItem === "My Restaurants"} onClick={this.handleItemClick}/>
                     <Link to='/location'>
-                        <Menu.Item name="C" active={activeItem === "C"} onClick={(e) => {this.props.clearRestaurants(); this.handleItemClick(e, 'C')}}/>
+                        <Menu.Item name="Different Location" active={activeItem === "C"} onClick={(e) => {this.props.clearRestaurants(); this.handleItemClick(e, 'Different Location')}}/>
                     </Link>
                 </Menu>
                 {/*using ternary to display component based on what activeItem is*/}

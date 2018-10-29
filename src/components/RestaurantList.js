@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Button, Card, Image, Modal, Container, Header } from 'semantic-ui-react'
+import { Button, Card, Image, Modal, Container, Popup } from 'semantic-ui-react'
 import {removeRestaurant, getCoordinates} from '../redux/actionCreator'
 //import {Link} from 'react-router-dom'
 import RouletteWheel from './RouletteWheel';
@@ -21,9 +21,7 @@ const RestaurantList = ({savedRestaurants, removeRestaurant, getCoordinates}) =>
         </Card.Content>
         <Card.Content extra>
           <div className='ui two buttons'>
-            <Button basic color='blue' onClick={()=>getCoordinates(restaurant.coordinates)}>
-              Navigate
-            </Button>
+            <Popup trigger={<Button basic color='blue' onClick={()=>getCoordinates(restaurant.coordinates)}> Navigate </Button>} content='Coming soon for V2 !)' />
             <Button onClick={() => removeRestaurant(restaurant) } basic color='red'>
               Remove
             </Button>
